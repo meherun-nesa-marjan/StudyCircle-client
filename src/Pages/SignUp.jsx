@@ -1,11 +1,42 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { FaUserAlt } from "react-icons/fa";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../Providers/AuthProvider";
 
 const SignUp = () => {
+    const { createUser } = useContext(AuthContext);
+    const [error, setError] = useState("");
     const [passwordVisible, setPasswordVisible] = useState(false);
+
+    const handleRegister = e => {
+        e.preventDefault();
+        const form = e.target;
+        const firstName = form.firstName.value;
+        const lastName = form.lastName.value
+        const photoURL = form.photoURL.value
+        const email = form.email.value
+        const password = form.password.value
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        if (!passwordRegex.test(password)) {
+            setError(
+                "Password must contain at least 6 characters, an uppercase letter, and a lowercase letter."
+            );
+            return;
+        }
+        setError("");
+        createUser(email, password)
+            .then((result) => {
+                console.log("User registered with Google:", result.user);
+
+            })
+            .catch((error) => {
+                setError("Google registration failed: " + error.message);
+
+            });
+
+    }
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
@@ -21,7 +52,7 @@ const SignUp = () => {
                 <p className='text-2xl pb-2'>Your Personal Details</p>
                 <hr />
                 <div className="lg:w-9/12 w-full mx-auto py-6">
-                    <form className="">
+                    <form onSubmit={handleRegister} className="">
                         <div className="mb-4 flex items-center">
                             <label htmlFor="firstName" className="w-20 text-sm font-medium text-gray-700">
                                 First Name:
@@ -30,7 +61,7 @@ const SignUp = () => {
                                 type="text"
                                 id="firstName"
                                 name="firstName"
-                                className="w-2/3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
                         </div>
@@ -42,7 +73,7 @@ const SignUp = () => {
                                 type="text"
                                 id="lastName"
                                 name="lastName"
-                                className="w-2/3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
                         </div>
@@ -55,7 +86,7 @@ const SignUp = () => {
                                 type="text"
                                 name="photoURL"
                                 id="photoUrl"
-                                className="w-2/3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
                         </div>
@@ -67,7 +98,7 @@ const SignUp = () => {
                                 type="email"
                                 id="email"
                                 name="email"
-                                className="w-2/3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
                         </div>
