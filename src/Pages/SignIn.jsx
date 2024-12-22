@@ -1,9 +1,51 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../Providers/AuthProvider";
+
 
 const SignIn = () => {
+    const { signInUser, signInWithGoogle } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from || "/"
+    console.log(location)
+    const [error, setError] = useState("");
+    const [email, setEmail] = useState("");
+    const handleLogin = (e) => {
+        e.preventDefault();
+        setError("");
+        const password = e.target.password.value;
+        signInUser(email, password)
+            .then(() => {
+                e.target.reset();
+                toast.success("Login successful!");
+                navigate(from, { replace: true })
+
+
+            })
+            .catch((error) => {
+                setError("Invalid email or password. Please try again.");
+                toast.error("Login failed. Check your credentials.");
+            });
+    };
+
+    const handleLoginWithGoogle = () => {
+        signInWithGoogle()
+            .then(() => {
+                toast.success("Login successful with Google!");
+                navigate(from, { replace: true })
+
+
+
+            })
+            .catch((error) => {
+                console.error("Google login error:", error.message);
+                toast.error("Google login failed. Please try again.");
+            });
+    };
     const [passwordVisible, setPasswordVisible] = useState(false);
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
@@ -20,7 +62,7 @@ const SignIn = () => {
 
                 <div className=" w-full mx-auto py-6 grid lg:grid-cols-2 grid-cols-1 gap-5 ">
 
-                    <form className="border border-slate-600 p-10">
+                    <form onSubmit={handleLogin} className="border border-slate-600 p-10">
                         <h1 className='font-bold text-4xl py-5'>Sign In Here</h1>
                         <div className="mb-4 flex items-center">
                             <label htmlFor="email" className="w-20 text-sm font-medium text-gray-700">
@@ -67,6 +109,7 @@ const SignIn = () => {
                                 Sign In
                             </button>
                             <button
+                                onClick={handleLoginWithGoogle}
                                 type="button"
                                 className=""
                             >

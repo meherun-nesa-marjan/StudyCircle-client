@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../Providers/AuthProvider';
+import { Tooltip } from 'react-tooltip'
 
 const Navbar = () => {
+    const { user, signOutUser } = useContext(AuthContext);
     const navItems = [
         { path: '/', element: 'Home' },
         { path: '/Assignments', element: 'Assignments' },
@@ -61,11 +64,39 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-              <div className="space-x-3">
-              <Link to={'/SignIn'}>Sign In</Link>
-              <span>|</span>
-              <Link to={'/SignUp'}>Register</Link>
-              </div>
+                {user ? (
+                    <div className="flex items-center space-x-4">
+                        {user.photoURL && (
+                            <a
+                                data-tooltip-id="my-tooltip"
+                                data-tooltip-content={name || "No name available"}
+                                className="z-[60]"
+                            >
+                                <img
+                                    src={user.photoURL || "/default-avatar.png"}
+                                    alt="Profile"
+                                    className="w-8 h-8 rounded-full"
+                                    onError={(e) => (e.target.src = "/default-avatar.png")}
+                                />
+                            </a>
+                        )}
+                        <Tooltip id="my-tooltip" />
+                        <button
+                            onClick={handleSignOut}
+                            className="btn bg-[#754738] text-white"
+                        >
+                            Logout
+                        </button>
+                    </div>
+                ) : (
+                    <div className="space-x-3">
+                        <Link to={'/SignIn'}>Sign In</Link>
+                        <span>|</span>
+                        <Link to={'/SignUp'}>Register</Link>
+                    </div>
+
+                )}
+
             </div>
         </div>
     );
