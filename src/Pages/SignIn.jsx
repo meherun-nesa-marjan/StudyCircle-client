@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../Providers/AuthProvider";
 
 
@@ -11,8 +12,10 @@ const SignIn = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from || "/"
-    console.log(location)
+
     const [error, setError] = useState("");
+
+    const [passwordVisible, setPasswordVisible] = useState(false);
     const [email, setEmail] = useState("");
     const handleLogin = (e) => {
         e.preventDefault();
@@ -46,10 +49,10 @@ const SignIn = () => {
                 toast.error("Google login failed. Please try again.");
             });
     };
-    const [passwordVisible, setPasswordVisible] = useState(false);
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
+
     return (
         <div>
             <div className="w-11/12 mx-auto py-10">

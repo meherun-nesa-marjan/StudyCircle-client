@@ -1,71 +1,67 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
-import { FcGoogle } from "react-icons/fc";
-import { FaUserAlt, FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import { toast } from "react-toastify";
-import { Tooltip } from 'react-tooltip'
+import "react-toastify/dist/ReactToastify.css";
+import { FcGoogle } from "react-icons/fc";
+import { FaUserAlt, FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 const SignUp = () => {
     const navigate = useNavigate();
-    const { createUser, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
+    const { createUser, signInWithGoogle, UpdateUserProfile } = useContext(AuthContext);
     const [error, setError] = useState("");
     const [passwordVisible, setPasswordVisible] = useState(false);
-
-    const handleRegister = e => {
+    const handleRegistration = (e) => {
         e.preventDefault();
-        const form = e.target;
-        const firstName = form.firstName.value;
-        const lastName = form.lastName.value;
-        const photoURL = form.photoURL.value;
-        const email = form.email.value;
-        const password = form.password.value;
-
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const photoURL = e.target.photoURL.value;
+        const password = e.target.password.value;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
         if (!passwordRegex.test(password)) {
-            setError("Password must contain at least 6 characters, an uppercase letter, and a lowercase letter.");
+            setError(
+                "Password must contain at least 6 characters, an uppercase letter, and a lowercase letter."
+            );
             return;
         }
-        setError(""); 
+        setError("");
+
         createUser(email, password)
-        .then((result) => {
-          const user = result.user;
-          updateUserProfile({firstName:firstName, lastName:lastName, displayName: firstName + " " + lastName, photoURL: photoURL })
-            .then(() => {
-              toast.success("Registration successful!");
-              navigate("/");
+            .then((result) => {
+                const user = result.user;
+                UpdateUserProfile({ displayName: name, photoURL: photoURL })
+                    .then(() => {
+                        toast.success("Registration successful!");
+                        navigate("/");
+                    })
+                    .catch((updateError) => {
+                        setError("Error updating profile: " + updateError.message);
+                        toast.error("Error updating profile.");
+                    });
             })
-            .catch((updateError) => {
-              setError("Error updating profile: " + updateError.message);
-              toast.error("Error updating profile.");
+            .catch((authError) => {
+                setError("Registration failed: " + authError.message);
+                toast.error("Registration failed: " + authError.message);
             });
-        })
-        .catch((authError) => {
-          setError("Registration failed: " + authError.message);
-          toast.error("Registration failed" );
-        });
     };
 
     const handleRegistrationWithGoogle = () => {
         signInWithGoogle()
-          .then((result) => {
-            console.log("User registered with Google:", result.user);
-            toast.success("Google registration successful!");
-            navigate("/");
-          })
-          .catch((error) => {
-            setError("Google registration failed: " + error.message);
-            toast.error("Google registration failed: " + error.message);
-          });
-      };
-    
-  
-    
+            .then((result) => {
+                console.log("User registered with Google:", result.user);
+                toast.success("Google registration successful!");
+                navigate("/");
+            })
+            .catch((error) => {
+                setError("Google registration failed: " + error.message);
+                toast.error("Google registration failed: " + error.message);
+            });
+    };
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
-
     return (
         <div>
             <div className="w-11/12 mx-auto py-10">
@@ -78,31 +74,20 @@ const SignUp = () => {
                 <p className='text-2xl pb-2'>Your Personal Details</p>
                 <hr />
                 <div className="lg:w-9/12 w-full mx-auto py-6">
-                    <form onSubmit={handleRegister}>
+                    <form onSubmit={handleRegistration}>
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="firstName" className="w-20 text-sm font-medium text-gray-700">
-                                First Name:
+                            <label htmlFor="name" className="w-20 text-sm font-medium text-gray-700">
+                                Your Name:
                             </label>
                             <input
                                 type="text"
-                                id="firstName"
-                                name="firstName"
+                                id="name"
+                                name="name"
                                 className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
                         </div>
-                        <div className="mb-4 flex items-center">
-                            <label htmlFor="lastName" className="w-20 text-sm font-medium text-gray-700">
-                                Last Name:
-                            </label>
-                            <input
-                                type="text"
-                                id="lastName"
-                                name="lastName"
-                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
-                                required
-                            />
-                        </div>
+
                         <div className="mb-4 flex items-center">
                             <label htmlFor="photoUrl" className="w-20 text-sm font-medium text-gray-700">
                                 Photo URL:

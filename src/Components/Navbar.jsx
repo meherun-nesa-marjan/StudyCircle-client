@@ -5,6 +5,14 @@ import { Tooltip } from 'react-tooltip'
 
 const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext);
+    const name = user?.displayName;
+    const handleSignOut = async () => {
+        try {
+            await signOutUser();
+        } catch (error) {
+            console.error("Error signing out:", error);
+        }
+    };
     const navItems = [
         { path: '/', element: 'Home' },
         { path: '/Assignments', element: 'Assignments' },
@@ -67,20 +75,40 @@ const Navbar = () => {
                 {user ? (
                     <div className="flex items-center space-x-4">
                         {user.photoURL && (
-                            <a
-                                data-tooltip-id="my-tooltip"
-                                data-tooltip-content={name || "No name available"}
-                                className="z-[60]"
-                            >
-                                <img
-                                    src={user.photoURL || "/default-avatar.png"}
-                                    alt="Profile"
-                                    className="w-8 h-8 rounded-full"
-                                    onError={(e) => (e.target.src = "/default-avatar.png")}
-                                />
-                            </a>
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0}>
+
+                                    <a
+                                        data-tooltip-id="my-tooltip-inline"
+                                        data-tooltip-content={name || "No name available"}
+                                    >
+                                        <img
+                                            src={user.photoURL || "/default-avatar.png"}
+                                            alt="Profile"
+                                            className="w-8 h-8 rounded-full"
+                                            onError={(e) => (e.target.src = "/default-avatar.png")}
+                                        />
+                                    </a>
+
+
+                                </div>
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                                    <li><a>Item 1</a></li>
+                                    <li><a>Item 2</a></li>
+                                </ul>
+                            </div>
+
                         )}
-                        <Tooltip id="my-tooltip" />
+                        <Tooltip
+                            id="my-tooltip-inline"
+                            style={{
+                                backgroundColor: "transparent",
+                                color: "black",
+                               
+                                
+                            }}
+                           
+                        />
                         <button
                             onClick={handleSignOut}
                             className="btn bg-[#754738] text-white"
