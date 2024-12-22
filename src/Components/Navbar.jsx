@@ -16,7 +16,7 @@ const Navbar = () => {
     const navItems = [
         { path: '/', element: 'Home' },
         { path: '/Assignments', element: 'Assignments' },
-        { path: '/products', element: 'Products' },
+        ...(user ? [{ path: '/PendingAssignments', element: 'Pending Assignments' }] : []),
 
     ];
     return (
@@ -75,7 +75,7 @@ const Navbar = () => {
                 {user ? (
                     <div className="flex items-center space-x-4">
                         {user.photoURL && (
-                            <div className="dropdown dropdown-end">
+                            <div className="dropdown dropdown-bottom">
                                 <div tabIndex={0}>
 
                                     <a
@@ -92,9 +92,10 @@ const Navbar = () => {
 
 
                                 </div>
-                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                                    <li><a>Item 1</a></li>
-                                    <li><a>Item 2</a></li>
+                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box right-0 z-[99] w-56 p-2 shadow">
+                                    <li><Link to={'/CreateAssignments'}>Create Assignments</Link></li>
+                                    <li><Link to={'/MyAttemptedAssignments'}>My Attempted Assignments</Link></li>
+                                    
                                 </ul>
                             </div>
 
@@ -103,9 +104,7 @@ const Navbar = () => {
                             id="my-tooltip-inline"
                             style={{
                                 backgroundColor: "transparent",
-                                color: "black",
-                               
-                                
+                                color: "black", 
                             }}
                            
                         />
