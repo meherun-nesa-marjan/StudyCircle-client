@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const AssignmentCard = ({ assignments, handleDelete }) => {
+const AssignmentCard = ({ assignments, handleDelete, userEmail  }) => {
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
       {assignments.map((assignment) => (
@@ -15,12 +15,20 @@ const AssignmentCard = ({ assignments, handleDelete }) => {
             <p className="text-gray-500 text-xs">Difficulty: {assignment.difficulty}</p>
             <p className="text-gray-500 text-xs">Marks: {assignment.marks}</p>
             <div className="card-actions">
-              <Link to={`/DonationDetails/${assignment.id}`}>
+           
+              <Link to={`/AssignmentDetails/${assignment._id}`}>
                 <button className="btn bg-[#137257] text-white">View</button>
               </Link>
-              <Link to={`/DonationDetails/${assignment.id}`}>
+              {assignment.email === userEmail ? (
+                <Link to={`/AssignmentsUpdate/${assignment._id}`}>
                 <button className="btn bg-[#137257] text-white">Update</button>
               </Link>
+              ) : (
+                <button className="btn bg-gray-400 text-white cursor-not-allowed" disabled>
+                  Not Authorized
+                </button>
+              )}
+              
               <button
                 className="btn bg-red-500 text-white hover:bg-red-700"
                 onClick={() => handleDelete(assignment._id, assignment.email)}

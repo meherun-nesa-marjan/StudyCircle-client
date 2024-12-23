@@ -8,6 +8,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import CreateAssignments from "../Pages/CreateAssignments";
 import MyAttemptedAssignments from "../Pages/MyAttemptedAssignments";
 import PendingAssignments from "../Pages/PendingAssignments";
+import AssignmentsUpdate from "../Pages/AssignmentsUpdate";
   
 
 const Routes = createBrowserRouter([
@@ -22,14 +23,20 @@ const Routes = createBrowserRouter([
 
             },
             {
+                path:'/CreateAssignments',
+                element:<PrivateRoutes><CreateAssignments /></PrivateRoutes>,
+            },
+            {
                 path:'/Assignments',
                 element:<Assignments />,
                 loader: () => fetch('http://localhost:5000/assignmentData'),
             },
             {
-                path:'/CreateAssignments',
-                element:<PrivateRoutes><CreateAssignments /></PrivateRoutes>,
+                path:'/AssignmentsUpdate/:id',
+                element: <PrivateRoutes><AssignmentsUpdate /></PrivateRoutes>,
+                loader: ({params}) => fetch(`http://localhost:5000/assignmentData/${params.id}`)
             },
+            
             {
                 path:'/MyAttemptedAssignments',
                 element:<PrivateRoutes><MyAttemptedAssignments /></PrivateRoutes>,
