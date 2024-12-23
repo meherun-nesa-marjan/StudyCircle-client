@@ -7,6 +7,7 @@ const AssignmentDetails = () => {
   const assignment = useLoaderData();
   const { user } = useContext(AuthContext);
   const userEmail = user?.email;
+ 
   const [googleDocsLink, setGoogleDocsLink] = useState('');
   const [note, setNote] = useState('');
   const navigate = useNavigate();
@@ -16,6 +17,10 @@ const AssignmentDetails = () => {
 
     const submission = {
       assignmentId: assignment._id,
+      examineeName: user?.displayName,
+      marks:assignment.marks,
+      title:assignment.title,
+      obtainedMarks: '',
       userEmail,
       googleDocsLink,
       note,
