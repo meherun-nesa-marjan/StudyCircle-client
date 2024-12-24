@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const EvaluateAssignment = () => {
-  const { state } = useLocation(); // Get assignment data from navigation state
+  const { state } = useLocation(); 
   const { assignment } = state;
   const [obtainedMarks, setObtainedMarks] = useState('');
   const [feedback, setFeedback] = useState('');

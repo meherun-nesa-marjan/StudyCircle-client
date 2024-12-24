@@ -51,6 +51,7 @@ const SignUp = () => {
             .then((result) => {
                 console.log("User registered with Google:", result.user);
                 toast.success("Google registration successful!");
+
                 navigate("/");
             })
             .catch((error) => {

@@ -5,6 +5,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../Providers/AuthProvider";
+import axios from "axios";
+import { TbRuler2 } from "react-icons/tb";
 
 
 const SignIn = () => {
@@ -12,25 +14,29 @@ const SignIn = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from || "/"
-
-    const [error, setError] = useState("");
-
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const [email, setEmail] = useState("");
+   
     const handleLogin = (e) => {
         e.preventDefault();
-        setError("");
+        const email = e.target.email.value
         const password = e.target.password.value;
         signInUser(email, password)
             .then(() => {
                 e.target.reset();
                 toast.success("Login successful!");
-                navigate(from, { replace: true })
+                const user = {email: email}
+                axios.post('http://localhost:5000/jwt', user, {
+                    withCredentials: true
+                })
+                .then(res =>{
+                    console.log(res.data)
+                })
+              
+               //navigate(from, { replace: true })
 
 
             })
             .catch((error) => {
-                setError("Invalid email or password. Please try again.");
                 toast.error("Login failed. Check your credentials.");
             });
     };
