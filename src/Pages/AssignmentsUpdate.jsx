@@ -4,14 +4,17 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import { AuthContext } from '../Providers/AuthProvider';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 
 const AssignmentsUpdate = () => {
+    const axiosSecure = useAxiosSecure();
     const [startDate, setStartDate] = useState(new Date());
-    const assignment = useLoaderData();
+    const assignments = useLoaderData();
+    const assignment =assignments.data
     const { user } = useContext(AuthContext)
     const navigate = useNavigate();
-    const { 
+    const {
         _id,
         title,
         difficulty,
@@ -20,66 +23,58 @@ const AssignmentsUpdate = () => {
         marks,
         dueDate, } = assignment;
 
-        const handleUpdateAssignment = (e) => {
-            const email = user?.email;
-            const name = user?.displayName;
-            e.preventDefault();
-            const form = e.target;
-            const title = form.title.value;
-            const description = form.description.value;
-            const difficulty = form.difficulty.value;
-            const photoUrl = form.photoUrl.value;
-            const marks = form.marks.value;
-            const dueDate = form.dueDate.value;
-        
-            const updatedAssignment = {
-                name,
-                email,
-                title,
-                difficulty,
-                description,
-                photoUrl,
-                marks,
-                dueDate,
-            };
-        console.log(updatedAssignment)
-            Swal.fire({
-              title: "Are you sure?",
-              text: "Do you want to update this assignment?",
-              icon: "warning",
-              showCancelButton: true,
-              confirmButtonColor: "#3085d6",
-              cancelButtonColor: "#d33",
-              confirmButtonText: "Yes, update it!",
-            }).then((result) => {
-              if (result.isConfirmed) {
-                fetch(`http://localhost:5000/assignmentData/${_id}`, {
-                  method: "PUT", 
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(updatedAssignment),
-                })
-                  .then((res) => res.json())
-                  .then((data) => {
-                    if (data.modifiedCount > 0) {
-                      Swal.fire("Updated!", "Your Assignment has been updated.", "success");
-                      navigate("/Assignments");
-                     
-        
-                    } else {
-                      Swal.fire("No Changes", "No changes were made to the Assignment.", "info");
-                    }
-                    
-                  })
-                  
-                  .catch((error) => {
-                    console.error("Error updating assignent:", error);
-                    Swal.fire("Error", "Could not update the assignment. Please try again.", "error");
-                  });
-              }
-            });
-          };
+    const handleUpdateAssignment = (e) => {
+        const email = user?.email;
+        const name = user?.displayName;
+        e.preventDefault();
+        const form = e.target;
+        const title = form.title.value;
+        const description = form.description.value;
+        const difficulty = form.difficulty.value;
+        const photoUrl = form.photoUrl.value;
+        const marks = form.marks.value;
+        const dueDate = form.dueDate.value;
+
+        const updatedAssignment = {
+            name,
+            email,
+            title,
+            difficulty,
+            description,
+            photoUrl,
+            marks,
+            dueDate,
+        };
+       
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to update this assignment?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, update it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure
+                    .put(`/assignmentData/${_id}`, updatedAssignment)
+                    .then((response) => {
+                        if (response.data.modifiedCount > 0) {
+                            Swal.fire("Updated!", "Your Assignment has been updated.", "success");
+                            navigate("/Assignments");
+                        } else {
+                            Swal.fire("No Changes", "No changes were made to the Assignment.", "info");
+                        }
+                    })
+
+                    .catch((error) => {
+                        console.error("Error updating assignent:", error);
+                        Swal.fire("Error", "Could not update the assignment. Please try again.", "error");
+                    });
+            }
+        });
+    };
     return (
         <div>
             <div className="w-11/12 mx-auto py-10">
@@ -200,7 +195,7 @@ const AssignmentsUpdate = () => {
                                 type="submit"
                                 className="bg-black text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex gap-2 items-center"
                             >
-                               UpDate
+                                UpDate
                             </button>
 
                         </div>

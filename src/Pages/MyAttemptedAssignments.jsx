@@ -1,26 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
+
 
 
 const MyAttemptedAssignments = () => {
+    const axiosSecure = useAxiosSecure();
     const { user } = useContext(AuthContext);
-  const [submissions, setSubmissions] = useState([]);
-  const userEmail = user?.email;
+    const [submissions, setSubmissions] = useState([]);
+    const userEmail = user?.email;
 
-  useEffect(() => {
-    if (userEmail) {
-      fetch(`http://localhost:5000/mySubmissions?email=${userEmail}`)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-          setSubmissions(data);
-        })
-        .catch((error) => {
-          console.error('Error fetching submissions:', error);
-         
-        });
-    }
-  }, [userEmail]);
+    useEffect(() => {
+        if (userEmail) {
+
+            axiosSecure.get(`/mySubmissions?email=${userEmail}`)
+                .then(res => setSubmissions(res.data))
+        }
+    }, [userEmail, axiosSecure]);
     return (
         <div>
             <div className="w-11/12 mx-auto py-10">

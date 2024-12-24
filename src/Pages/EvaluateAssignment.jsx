@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 const EvaluateAssignment = () => {
-  const { state } = useLocation(); 
+  const axiosSecure = useAxiosSecure();
+  const { state } = useLocation();
   const { assignment } = state;
   const [obtainedMarks, setObtainedMarks] = useState('');
   const [feedback, setFeedback] = useState('');
@@ -12,22 +14,19 @@ const EvaluateAssignment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:5000/markAssignment/${assignment._id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ obtainedMarks, feedback }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
+    axiosSecure
+      .put(`/markAssignment/${assignment._id}`, { obtainedMarks, feedback })
+      .then((response) => {
+        if (response.data.modifiedCount > 0) {
           toast.success('Assignment marked successfully!');
           navigate('/pendingAssignments');
         }
       })
       .catch((error) => {
-        console.error(error);
+        console.error('Error marking assignment:', error);
         toast.error('Failed to mark assignment.');
       });
+
   };
 
   return (

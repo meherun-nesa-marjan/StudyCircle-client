@@ -24,15 +24,9 @@ const SignIn = () => {
             .then(() => {
                 e.target.reset();
                 toast.success("Login successful!");
-                const user = {email: email}
-                axios.post('http://localhost:5000/jwt', user, {
-                    withCredentials: true
-                })
-                .then(res =>{
-                    console.log(res.data)
-                })
+                
               
-               //navigate(from, { replace: true })
+               navigate(from, { replace: true })
 
 
             })

@@ -4,10 +4,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../Providers/AuthProvider";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 
 
 const CreateAssignments = () => {
+    const axiosSecure = useAxiosSecure();
     const [startDate, setStartDate] = useState(new Date());
     const { user } = useContext(AuthContext)
     
@@ -34,20 +36,15 @@ const CreateAssignments = () => {
             dueDate,
         }
         // send data to server
-        console.log(assignmentData)
-        fetch('http://localhost:5000/assignmentData', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(assignmentData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-            })
-            toast.success("Add Campaign successfully!");
+        axiosSecure.post('/assignmentData', assignmentData)
+        .then((response) => {
+            console.log(response.data);
+            toast.success("Assignment created successfully!");
             form.reset();
+          
+        })
+       
+
         
            
     };

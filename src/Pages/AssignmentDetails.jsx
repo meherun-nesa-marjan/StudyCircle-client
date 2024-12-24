@@ -2,26 +2,31 @@ import React, { useContext, useState } from 'react';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
 import { toast } from "react-toastify";
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 const AssignmentDetails = () => {
-  const assignment = useLoaderData();
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
-  const userEmail = user?.email;
- 
+  const navigate = useNavigate();
+
+
   const [googleDocsLink, setGoogleDocsLink] = useState('');
   const [note, setNote] = useState('');
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const assignments = useLoaderData()
+  const assignment = assignments.data
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const submission = {
       assignmentId: assignment._id,
       examineeName: user?.displayName,
-      marks:assignment.marks,
-      title:assignment.title,
+      marks: assignment.marks,
+      title: assignment.title,
       obtainedMarks: '',
-      userEmail,
+      userEmail: user?.email,
       googleDocsLink,
       note,
       status: 'pending',
@@ -29,24 +34,22 @@ const AssignmentDetails = () => {
     };
     console.log(submission)
 
-    fetch('http://localhost:5000/submitAssignment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(submission),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
+    axiosSecure
+      .post('/submitAssignment', submission)
+      .then((response) => {
+        if (response.data.insertedId) {
           toast.success("Submit successfully!");
-          document.getElementById('my_modal_5').close();
+          setIsModalOpen(false);
           navigate('/Assignments');
         }
       })
       .catch((error) => {
-        console.error('Error submitting assignment:', error);
-        toast.error("Something Wrong!");
+        console.error("Error submitting assignment:", error);
+        toast.error("Failed to submit the assignment. Please try again.");
       });
   };
+
+
 
   return (
     <div>

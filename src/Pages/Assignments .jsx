@@ -3,8 +3,10 @@ import AssignmentCard from '../Components/AssignmentCard';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Providers/AuthProvider';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 const Assignments = () => {
+    const axiosSecure = useAxiosSecure();
     const initialAssignments = useLoaderData();
     const [assignments, setAssignments] = useState(initialAssignments);
     const { user } = useContext(AuthContext);
@@ -30,12 +32,10 @@ const Assignments = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/assignmentData/${_id}`, {
-                    method: 'DELETE',
-                })
-                    .then((res) => res.json())
-                    .then((data) => {
-                        if (data.deletedCount > 0) {
+                axiosSecure
+                    .delete(`/assignmentData/${_id}`)
+                    .then((response) => {
+                        if (response.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your assignment has been deleted.",

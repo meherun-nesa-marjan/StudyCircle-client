@@ -5,17 +5,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 const PendingAssignments = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [pendingAssignments, setPendingAssignments] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/pendingAssignments?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setPendingAssignments(data))
-      .catch((error) => console.error(error));
+    axiosSecure.get(`/pendingAssignments?email=${user.email}`)
+    .then(res => setPendingAssignments(res.data))
+
+    //fetch(`http://localhost:5000/pendingAssignments?email=${user.email}`)
+      //.then((res) => res.json())
+     // .then((data) => setPendingAssignments(data))
+    //  .catch((error) => console.error(error));
   }, [user.email]);
 
   const handleMarkAssignment = (assignment) => {
