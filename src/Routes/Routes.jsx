@@ -12,71 +12,71 @@ import AssignmentsUpdate from "../Pages/AssignmentsUpdate";
 import AssignmentDetails from "../Pages/AssignmentDetails";
 import EvaluateAssignment from "../Pages/EvaluateAssignment";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
-  
-const axiosSecure =useAxiosSecure();
+
+const axiosSecure = useAxiosSecure();
 const Routes = createBrowserRouter([
     {
-        path:'/',
-        element:<MainLayout />,
+        path: '/',
+        element: <MainLayout />,
         //errorElement:<Error />,
-        children:[
+        children: [
             {
-                path:'/',
+                path: '/',
                 element: <Home />,
 
             },
             {
-                path:'/CreateAssignments',
-                element:<PrivateRoutes><CreateAssignments /></PrivateRoutes>,
+                path: '/CreateAssignments',
+                element: <PrivateRoutes><CreateAssignments /></PrivateRoutes>,
             },
             {
-                path:'/Assignments',
-                element:<Assignments />,
-                loader: () => fetch('http://localhost:5000/assignmentData'),
+                path: '/Assignments',
+                element: <Assignments />,
+                //loader: () => fetch('http://localhost:5000/assignmentData'),
             },
             {
-                path:'/AssignmentsUpdate/:id',
+                path: '/AssignmentsUpdate/:id',
                 element: <PrivateRoutes><AssignmentsUpdate /></PrivateRoutes>,
                 //loader: ({params}) => fetch(`http://localhost:5000/assignmentData/${params.id}`)
-                loader:({params}) =>{
-                    const res =   axiosSecure.get(`/assignmentData/${params.id}`)
+                loader: ({ params }) => {
+                    const res = axiosSecure.get(`/assignmentData/${params.id}`)
                     return res
                 }
             },
             {
-                path:'/AssignmentDetails/:id',
-                element:<PrivateRoutes><AssignmentDetails /></PrivateRoutes>,
-            //loader: ({params}) => fetch(`http://localhost:5000/assignmentData/${params.id}`)
-            loader:({params}) =>{
-                const res =   axiosSecure.get(`/assignmentData/${params.id}`)
-                return res
-            }
+                path: '/AssignmentDetails/:id',
+                element: <PrivateRoutes><AssignmentDetails /></PrivateRoutes>,
+                //loader: ({params}) => fetch(`http://localhost:5000/assignmentData/${params.id}`)
+                loader: ({ params }) => {
+                    const res = axiosSecure.get(`/assignmentData/${params.id}`)
+                    return res
+                }
             },
-            
+
             {
-                path:'/MyAttemptedAssignments',
-                element:<PrivateRoutes><MyAttemptedAssignments /></PrivateRoutes>,
+                path: '/MyAttemptedAssignments',
+                element: <PrivateRoutes><MyAttemptedAssignments /></PrivateRoutes>,
 
             },
             {
-                path:'/PendingAssignments',
-                element:<PrivateRoutes><PendingAssignments /></PrivateRoutes>
+                path: '/PendingAssignments',
+                element: <PrivateRoutes><PendingAssignments /></PrivateRoutes>
             },
             {
-                path:'/evaluateAssignment/:id',
-                element:<PrivateRoutes><EvaluateAssignment /></PrivateRoutes>,
+                path: '/evaluateAssignment/:id',
+                element: <PrivateRoutes><EvaluateAssignment /></PrivateRoutes>,
             },
             {
-                path:'/SignUp',
-                element:<SignUp />,
+                path: '/SignUp',
+                element: <SignUp />,
             },
             {
-                path:'/SignIn',
-                element:<SignIn />,
+                path: '/SignIn',
+                element: <SignIn />,
             },
 
         ],
-    
+
     },
-  ]);
-  export default Routes;
+]);
+export default Routes;
