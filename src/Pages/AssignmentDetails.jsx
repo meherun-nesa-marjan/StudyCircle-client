@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
 import { toast } from "react-toastify";
 import useAxiosSecure from '../Hooks/useAxiosSecure';
@@ -8,13 +8,30 @@ const AssignmentDetails = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
-
+  const { id } = useParams();
+  const [assignment, setAssignment] = useState ([])
   const [googleDocsLink, setGoogleDocsLink] = useState('');
   const [note, setNote] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const assignments = useLoaderData()
-  const assignment = assignments.data
+
+
+
+
+
+
+    useEffect(() => {
+              axiosSecure.get(`/assignmentData/${id}`)
+                  .then((response) => {
+                      console.log(response.data)
+                      setAssignment(response.data);
+                    
+                  })
+                  .catch((error) => {
+                      console.error("Error fetching assignment data:", error);
+                  });
+      
+      }, [id]);
+  
 
 
 

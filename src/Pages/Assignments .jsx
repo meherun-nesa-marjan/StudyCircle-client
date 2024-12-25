@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AssignmentCard from '../Components/AssignmentCard';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Providers/AuthProvider';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
@@ -11,7 +11,7 @@ const Assignments = () => {
     const { user } = useContext(AuthContext);
     const email = user?.email;
     const [assignments, setAssignments] = useState([]);
-    const [filter, setFilter] = useState(''); 
+    const [filter, setFilter] = useState('');
 
 
 
@@ -86,29 +86,29 @@ const Assignments = () => {
                 <Link to="/Assignments" className="text-red-500">Assignments</Link>
             </div>
             <div>
-            <h1 className="font-bold text-4xl py-5">All Assignments</h1>
+                <h1 className="font-bold text-4xl py-5">All Assignments</h1>
                 <div className="mb-6 flex gap-5">
-                
+
                     <select
-                      
-                        onChange={(e) =>setFilter(e.target.value)}
+
+                        onChange={(e) => setFilter(e.target.value)}
                         className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-zinc-600"
                     >
-                        <option value=""disabled selected>Search By Difficulties</option>
+                        <option value="" disabled selected>Search By Difficulties</option>
                         <option value=''>All</option>
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>
                     </select>
                 </div>
-               <div className="pt-36">
-               <AssignmentCard
-                    handleDelete={handleDelete}
-                    assignments={assignments}
-                    userEmail={email}
+                <div className="pt-36">
+                    <AssignmentCard
+                        handleDelete={handleDelete}
+                        assignments={assignments}
+                        userEmail={email}
 
-                />
-               </div>
+                    />
+                </div>
             </div>
         </div>
     );

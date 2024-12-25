@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
@@ -10,22 +10,31 @@ import useAxiosSecure from '../Hooks/useAxiosSecure';
 const AssignmentsUpdate = () => {
     const axiosSecure = useAxiosSecure();
     const [startDate, setStartDate] = useState(new Date());
-    const assignments = useLoaderData();
-    const assignment =assignments.data
-    const { user } = useContext(AuthContext)
+    const { id } = useParams();
+    const [assignment, setAssignment] = useState ([])
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
-    const {
-        _id,
-        title,
-        difficulty,
-        description,
-        photoUrl,
-        marks,
-        dueDate, } = assignment;
+
+   
+
+    useEffect(() => {
+            axiosSecure.get(`/assignmentData/${id}`)
+                .then((response) => {
+                    console.log(response.data)
+                    setAssignment(response.data);
+                  
+                })
+                .catch((error) => {
+                    console.error("Error fetching assignment data:", error);
+                });
+    
+    }, [id]);
+
+
+
+
 
     const handleUpdateAssignment = (e) => {
-        const email = user?.email;
-        const name = user?.displayName;
         e.preventDefault();
         const form = e.target;
         const title = form.title.value;
@@ -33,11 +42,11 @@ const AssignmentsUpdate = () => {
         const difficulty = form.difficulty.value;
         const photoUrl = form.photoUrl.value;
         const marks = form.marks.value;
-        const dueDate = form.dueDate.value;
+        const dueDate = startDate.toISOString();
 
         const updatedAssignment = {
-            name,
-            email,
+            name: user?.displayName,
+            email: user?.email,
             title,
             difficulty,
             description,
@@ -45,7 +54,7 @@ const AssignmentsUpdate = () => {
             marks,
             dueDate,
         };
-       
+
         Swal.fire({
             title: "Are you sure?",
             text: "Do you want to update this assignment?",
@@ -56,7 +65,6 @@ const AssignmentsUpdate = () => {
             confirmButtonText: "Yes, update it!",
         }).then((result) => {
             if (result.isConfirmed) {
-
                 axiosSecure
                     .put(`/assignmentData/${_id}`, updatedAssignment)
                     .then((response) => {
@@ -67,14 +75,14 @@ const AssignmentsUpdate = () => {
                             Swal.fire("No Changes", "No changes were made to the Assignment.", "info");
                         }
                     })
-
                     .catch((error) => {
-                        console.error("Error updating assignent:", error);
+                        console.error("Error updating assignment:", error);
                         Swal.fire("Error", "Could not update the assignment. Please try again.", "error");
                     });
             }
         });
     };
+
     return (
         <div>
             <div className="w-11/12 mx-auto py-10">
@@ -100,7 +108,7 @@ const AssignmentsUpdate = () => {
                                 type="text"
                                 id="title"
                                 name="title"
-                                defaultValue={title}
+                                defaultValue={assignment.title}
                                 className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
@@ -115,7 +123,7 @@ const AssignmentsUpdate = () => {
                                 type="text"
                                 id="description"
                                 name="description"
-                                defaultValue={description}
+                                defaultValue={assignment.description}
                                 className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
@@ -130,7 +138,7 @@ const AssignmentsUpdate = () => {
                                 type="number"
                                 id="marks"
                                 name="marks"
-                                defaultValue={marks}
+                                defaultValue={assignment.marks}
                                 className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
@@ -147,7 +155,7 @@ const AssignmentsUpdate = () => {
                                 type="text"
                                 name="photoURL"
                                 id="photoUrl"
-                                defaultValue={photoUrl}
+                                defaultValue={assignment.photoURL}
                                 className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
@@ -159,7 +167,7 @@ const AssignmentsUpdate = () => {
                             <select
                                 id="difficulty"
                                 name="difficulty"
-                                defaultValue={difficulty}
+                                defaultValue={assignment.difficulty}
                                 className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             >
@@ -181,7 +189,7 @@ const AssignmentsUpdate = () => {
                                 showIcon
                                 id="dueDate"
                                 name="dueDate"
-                                defaultValue={dueDate}
+                                defaultValue={assignment.dueDate}
                                 className="w-2/3 items-center border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
