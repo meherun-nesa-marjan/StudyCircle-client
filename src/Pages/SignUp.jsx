@@ -12,11 +12,13 @@ const SignUp = () => {
     const { createUser, signInWithGoogle, UpdateUserProfile } = useContext(AuthContext);
     const [error, setError] = useState("");
     const [passwordVisible, setPasswordVisible] = useState(false);
+ 
     const handleRegistration = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
         const email = e.target.email.value;
         const photoURL = e.target.photoURL.value;
+    
         const password = e.target.password.value;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
         if (!passwordRegex.test(password)) {
@@ -90,11 +92,11 @@ const SignUp = () => {
                         </div>
 
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="photoUrl" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="photoURL" className="w-20 text-sm font-medium text-gray-700">
                                 Photo URL:
                             </label>
                             <input
-                                type="text"
+                                type="URL"
                                 name="photoURL"
                                 id="photoUrl"
                                 className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"

@@ -7,6 +7,7 @@ import { IoSunny } from "react-icons/io5";
 
 import { IoMoon } from "react-icons/io5";
 
+
 const Navbar = () => {
     const { changeTheme, mode } = UseTheme();
     const { user, signOutUser } = useContext(AuthContext);
@@ -82,8 +83,10 @@ const Navbar = () => {
                     aria-label="Toggle Theme"
                     className="btn btn-ghost"
                 >
-                    {mode === "light" ? <IoSunny /> : <IoMoon />}
+                  
+                 {mode === "light" ? <IoSunny /> : <IoMoon />}
                 </button>
+                <div className=""> </div>
 
                 {user ? (
                     <div className="flex items-center space-x-4">
@@ -95,6 +98,7 @@ const Navbar = () => {
                                         data-tooltip-content={user.displayName || "No name available"}>
                                         <img
                                             src={user.photoURL}
+                                            reference = 'no-reference'
                                             alt="Profile"
                                             className="w-8 h-8 rounded-full"
                                             onError={(e) => (e.target.src = "/default-avatar.png")}

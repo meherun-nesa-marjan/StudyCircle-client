@@ -10,6 +10,7 @@ import 'swiper/css/navigation';
 // import required modules
 import { Navigation } from 'swiper/modules';
 
+import * as motion from "motion/react-client"
 
 const Bannar = () => {
     return (
@@ -18,7 +19,11 @@ const Bannar = () => {
                 <SwiperSlide>
                     <div className="bg-bannar3 bg-cover bg-no-repeat bg-center lg:h-full py-40 lg:py-64">
                         <div className="lg:w-5/12 w-full mx-auto   rounded-2xl py-16">
-                            <h1 className='font-bold text-3xl text-white'>"Stay on Top of Your Assignments"</h1>
+
+
+                            <motion.h1
+                                whileHover={{ scale: 1.2 }}
+                                whileTap={{ scale: 0.8 }} className='font-bold text-3xl text-white'>"Stay on Top of Your Assignments"</motion.h1>
                             <p className='font-bold text-xl text-[#754738]'>"Never miss a deadline! Track, submit, and review all your assignments in one place."</p>
                         </div>
 
@@ -27,7 +32,9 @@ const Bannar = () => {
                 <SwiperSlide>
                     <div className="bg-bannar1 bg-cover bg-center bg-no-repeat lg:h-full py-40 lg:py-64">
                         <div className="lg:w-5/12 w-full mx-auto   rounded-2xl py-16">
-                            <h1 className='font-bold text-3xl text-white'>Empower Your Learning Journey</h1>
+                            <motion.h1
+                             whileHover={{ scale: 1.2 }}
+                             whileTap={{ scale: 0.8 }} className='font-bold text-3xl text-white'>Empower Your Learning Journey</motion.h1>
                             <p className='font-bold text-xl text-[#715d57]'>"Unlock a world of knowledge with StudyCircle. Organize, learn, and succeed like never before."</p>
                         </div>
                     </div>
@@ -35,7 +42,9 @@ const Bannar = () => {
                 <SwiperSlide>
                     <div className="bg-bannar2 bg-cover bg-center bg-no-repeat lg:h-full py-40 lg:py-64">
                         <div className="lg:w-5/12 w-full mx-auto  rounded-2xl py-16">
-                            <h1 className='font-bold text-3xl text-white'>Collaborate, Create, Conquer</h1>
+                            <motion.h1
+                             whileHover={{ scale: 1.2 }}
+                             whileTap={{ scale: 0.8 }} className='font-bold text-3xl text-white'>Collaborate, Create, Conquer</motion.h1>
                             <p className='font-bold text-xl text-[#754738]'>"Join a community of learners and achievers. Share your goals, work together, and grow."</p>
                         </div>
 

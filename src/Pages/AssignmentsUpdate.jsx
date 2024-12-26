@@ -1,38 +1,47 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import { AuthContext } from '../Providers/AuthProvider';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 
-
 const AssignmentsUpdate = () => {
     const axiosSecure = useAxiosSecure();
     const [startDate, setStartDate] = useState(new Date());
     const { id } = useParams();
-    const [assignment, setAssignment] = useState ([])
+    const [assignment, setAssignment] = useState({});
+    const [errors, setErrors] = useState({});
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
-   
-
     useEffect(() => {
-            axiosSecure.get(`/assignmentData/${id}`)
-                .then((response) => {
-                    console.log(response.data)
-                    setAssignment(response.data);
-                  
-                })
-                .catch((error) => {
-                    console.error("Error fetching assignment data:", error);
-                });
-    
+        axiosSecure.get(`/assignmentData/${id}`)
+            .then((response) => {
+                setAssignment(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching assignment data:", error);
+            });
     }, [id]);
 
-
-
-
+    const validateForm = (data) => {
+        const newErrors = {};
+        if (!data.title) newErrors.title = "Title is required.";
+        if (!data.description) newErrors.description = "Description is required.";
+        if (!data.marks || data.marks <= 0) newErrors.marks = "Marks must be a positive number.";
+        if (!data.photoUrl) newErrors.photoUrl = "Photo URL is required.";
+        if (!data.difficulty) newErrors.difficulty = "Difficulty level must be selected.";
+        if (!data.dueDate) newErrors.dueDate = "Due date is required.";
+        return newErrors;
+    };
+    const isValidURL = (url) => {
+        const pattern = new RegExp(
+            "^(https?:\\/\\/)?([\\w-]+\\.)+[\\w-]{2,}(\\/\\S*)?$",
+            "i"
+        );
+        return pattern.test(url);
+    };
 
     const handleUpdateAssignment = (e) => {
         e.preventDefault();
@@ -41,19 +50,31 @@ const AssignmentsUpdate = () => {
         const description = form.description.value;
         const difficulty = form.difficulty.value;
         const photoUrl = form.photoUrl.value;
-        const marks = form.marks.value;
+        if (!isValidURL(photoUrl)) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                photoUrl: "A valid Photo URL is required.",
+            }));
+            return;
+        }
+        const marks = parseInt(form.marks.value, 10);
         const dueDate = startDate.toISOString();
-
         const updatedAssignment = {
             name: user?.displayName,
             email: user?.email,
             title,
-            difficulty,
             description,
+            difficulty,
             photoUrl,
             marks,
             dueDate,
         };
+
+        const validationErrors = validateForm(updatedAssignment);
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
 
         Swal.fire({
             title: "Are you sure?",
@@ -66,7 +87,7 @@ const AssignmentsUpdate = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure
-                    .put(`/assignmentData/${_id}`, updatedAssignment)
+                    .put(`/assignmentData/${id}`, updatedAssignment)
                     .then((response) => {
                         if (response.data.modifiedCount > 0) {
                             Swal.fire("Updated!", "Your Assignment has been updated.", "success");
@@ -89,125 +110,89 @@ const AssignmentsUpdate = () => {
                 <div className="space-x-3 mb-10">
                     <Link to={'/'} className='hover:text-red-500'>Home</Link>
                     <span>|</span>
-                    <Link to={'/Assignments'} className='hover:text-red-500'>Assiments</Link>
+                    <Link to={'/Assignments'} className='hover:text-red-500'>Assignments</Link>
                     <span>|</span>
                     <Link to='#' className='text-red-500'>Update Assignments</Link>
                 </div>
                 <h1 className='font-bold text-4xl py-5'>Update Your Assignment</h1>
-                <p className='text-2xl pb-2'> Assignment Details</p>
-                <hr />
                 <div className="lg:w-9/12 w-full mx-auto py-6">
-                    <form
-                        onSubmit={handleUpdateAssignment} >
-                        <div className="mb-4 flex items-center">
-                            <label htmlFor="title" className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Assignment Title:
-                            </label>
-
+                    <form onSubmit={handleUpdateAssignment}>
+                        <div className="mb-4 flex flex-col">
+                            <label htmlFor="title" className="text-sm font-medium text-gray-700">Assignment Title:</label>
                             <input
                                 type="text"
                                 id="title"
                                 name="title"
                                 defaultValue={assignment.title}
-                                className="w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
-                                required
+                                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                             />
-
+                            {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
                         </div>
-                        <div className="mb-4 flex items-center">
-                            <label htmlFor="description" className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Description:
-                            </label>
-
+                        <div className="mb-4 flex flex-col">
+                            <label htmlFor="description" className="text-sm font-medium text-gray-700">Description:</label>
                             <textarea
-                                type="text"
                                 id="description"
                                 name="description"
                                 defaultValue={assignment.description}
-                                className="w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
-                                required
+                                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                             />
-
+                            {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
                         </div>
-                        <div className="mb-4 flex items-center">
-                            <label htmlFor="marks" className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Marks:
-                            </label>
-
+                        <div className="mb-4 flex flex-col">
+                            <label htmlFor="marks" className="text-sm font-medium text-gray-700">Marks:</label>
                             <input
                                 type="number"
                                 id="marks"
                                 name="marks"
                                 defaultValue={assignment.marks}
-                                className="w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
-                                required
+                                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                             />
-
+                            {errors.marks && <p className="text-red-500 text-sm">{errors.marks}</p>}
                         </div>
-
-
-
-                        <div className="mb-4 flex items-center">
-                            <label htmlFor="photoUrl" className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Photo URL:
-                            </label>
+                        <div className="mb-4 flex flex-col">
+                            <label htmlFor="photoUrl" className="text-sm font-medium text-gray-700">Photo URL:</label>
                             <input
-                                type="text"
-                                name="photoURL"
+                                type="URL"
                                 id="photoUrl"
+                                name="photoUrl"
                                 defaultValue={assignment.photoUrl}
-                                className="w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
-                                required
+                                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                             />
+                            {errors.photoUrl && <p className="text-red-500 text-sm">{errors.photoUrl}</p>}
                         </div>
-                        <div className="mb-4 flex items-center">
-                            <label htmlFor="difficulty" className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Difficulty Level:
-                            </label>
+                        <div className="mb-4 flex flex-col">
+                            <label htmlFor="difficulty" className="text-sm font-medium text-gray-700">Difficulty Level:</label>
                             <select
                                 id="difficulty"
                                 name="difficulty"
                                 defaultValue={assignment.difficulty}
-                                className="w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 border-gray-300 dark:text-black rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
-                                required
+                                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                             >
-                                <option value='' disabled selected>
-                                    Select Assignment type
-                                </option>
+                                <option value="">Select Difficulty</option>
                                 <option value="easy">Easy</option>
                                 <option value="medium">Medium</option>
                                 <option value="hard">Hard</option>
                             </select>
+                            {errors.difficulty && <p className="text-red-500 text-sm">{errors.difficulty}</p>}
                         </div>
-                        <div className="mb-4 flex items-center">
-                            <label htmlFor="dueDate" className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                Due Date:
-                            </label>
-
-
+                        <div className="mb-4 flex flex-col">
+                            <label htmlFor="dueDate" className="text-sm font-medium text-gray-700">Due Date:</label>
                             <DatePicker
-                                showIcon
                                 id="dueDate"
                                 name="dueDate"
-                                defaultValue={assignment.dueDate}
-                                className="w-2/3 items-center border dark:bg-gray-300 dark:text-gray-900 border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
                                 dateFormat="dd/MM/yyyy"
-                                required />
+                                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                            />
+                            {errors.dueDate && <p className="text-red-500 text-sm">{errors.dueDate}</p>}
                         </div>
-
-
-                        <div className="flex gap-3">
-                            <button
-                                type="submit"
-                                className="bg-black text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex gap-2 items-center"
-                            >
-                                UpDate
-                            </button>
-
-                        </div>
-
+                        <button
+                            type="submit"
+                            className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            Update
+                        </button>
                     </form>
                 </div>
             </div>

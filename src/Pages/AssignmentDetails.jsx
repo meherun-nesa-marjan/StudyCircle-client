@@ -133,7 +133,7 @@ const AssignmentDetails = () => {
                         id="googleDocsLink"
                         value={googleDocsLink}
                         onChange={(e) => setGoogleDocsLink(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
+                        className="w-full px-3 py-2 border border-gray-300 rounded dark:text-black focus:outline-none"
                         required
                       />
                     </div>
@@ -145,12 +145,12 @@ const AssignmentDetails = () => {
                         id="note"
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none"
+                        className="w-full px-3 py-2 border border-gray-300 rounded dark:text-black focus:outline-none"
                         required
                       />
                     </div>
                     <div className="modal-action">
-                      <button type="submit" className="btn btn-primary">
+                      <button type="submit" className="btn bg-[#754738] text-white">
                         Submit
                       </button>
                     </div>

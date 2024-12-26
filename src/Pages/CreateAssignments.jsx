@@ -38,12 +38,12 @@ const CreateAssignments = () => {
     return Object.keys(newErrors).length === 0; 
   };
 
-  const isValidURL = (url) => {
+  const isValidURL = (Url) => {
     const pattern = new RegExp(
       "^(https?:\\/\\/)?([\\w-]+\\.)+[\\w-]{2,}(\\/\\S*)?$",
       "i"
     );
-    return pattern.test(url);
+    return pattern.test(Url);
   };
 
   const handleInputChange = (e) => {
@@ -134,6 +134,7 @@ const CreateAssignments = () => {
                 Description:
               </label>
               <textarea
+                type = 'text'
                 id="description"
                 name="description"
                 value={formData.description}
@@ -177,18 +178,18 @@ const CreateAssignments = () => {
                 Photo URL:
               </label>
               <input
-                type="text"
+                type="URL"
                 id="photoUrl"
                 name="photoUrl"
                 value={formData.photoUrl}
                 onChange={handleInputChange}
                 className={`w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 ${
-                  errors.photoURL ? "border-red-500" : "border-gray-300"
+                  errors.photoUrl ? "border-red-500" : "border-gray-300"
                 } rounded-md focus:outline-none`}
               />
             </div>
-            {errors.photoURL && (
-              <p className="text-red-500 text-sm">{errors.photoURL}</p>
+            {errors.photoUrl && (
+              <p className="text-red-500 text-sm">{errors.photoUrl}</p>
             )}
 
             {/* Difficulty */}

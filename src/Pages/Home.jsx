@@ -1,8 +1,9 @@
 import React from 'react';
 import FeatureSection from '../Components/FeatureSection';
 import FaqSection from '../Components/FaqSection';
-import Motion from '../Components/Motion';
 import Bannar from '../Components/Bannar';
+
+
 
 const Home = () => {
     return (
@@ -10,6 +11,8 @@ const Home = () => {
           <Bannar />
             <FeatureSection />
             <FaqSection />
+          
+          
         </div>
     );
 };
