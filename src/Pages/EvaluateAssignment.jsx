@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 
@@ -31,6 +31,13 @@ const EvaluateAssignment = () => {
 
   return (
     <div className="w-11/12 mx-auto py-10">
+      <div className="space-x-3 mb-10">
+        <Link to={'/'} className='hover:text-red-500'>Home</Link>
+        <span>|</span>
+        <Link to={'/PendingAssignments'} className='hover:text-red-500'>Pending Assiments</Link>
+        <span>|</span>
+        <a className='text-red-500'>Evaluate Assignment</a>
+      </div>
       <h2 className="text-3xl font-bold mb-6">Evaluate Assignment</h2>
       <div className="card bg-white shadow-lg p-6">
         <h3 className="text-xl font-semibold mb-4">{assignment.title}</h3>

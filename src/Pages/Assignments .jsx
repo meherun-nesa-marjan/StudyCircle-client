@@ -87,12 +87,12 @@ const Assignments = () => {
             </div>
             <div>
                 <h1 className="font-bold text-4xl py-5">All Assignments</h1>
-                <div className="mb-6 flex gap-5">
+                <div className="mb-6 flex gap-5 ">
 
                     <select
 
                         onChange={(e) => setFilter(e.target.value)}
-                        className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-zinc-600"
+                        className="px-3 py-2 border border-gray-300 dark:bg-gray-400 dark:text-black rounded focus:outline-none focus:ring-2 focus:ring-zinc-600"
                     >
                         <option value="" disabled selected>Search By Difficulties</option>
                         <option value=''>All</option>

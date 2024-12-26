@@ -6,11 +6,11 @@ import { FaWhatsapp } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
-        <div className=" bg-gray-400">
-            <footer className="footer w-11/12 mx-auto py-10 text-base-content ">
+        <div className=" bg-gray-400 dark:bg-gray-900  dark:text-white">
+            <footer className="footer w-11/12 mx-auto py-10 text-base-content dark:bg-gray-900  dark:text-white ">
                 <aside>
                     <p>
-                        ACME Industries Ltd.
+                    StudyCircle Industries Ltd.
                         <br />
                         Providing reliable tech since 1992
                     </p>
@@ -50,7 +50,7 @@ const Footer = () => {
         
             <footer className="footer footer-center py-8">
                 <aside>
-                    <p>Copyright © {new Date().getFullYear()} - All right reserved by ACME Industries Ltd</p>
+                    <p>Copyright © {new Date().getFullYear()} - All right reserved by StudyCircle Industries Ltd</p>
                 </aside>
             </footer>
         </div>

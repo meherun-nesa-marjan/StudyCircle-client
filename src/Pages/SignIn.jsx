@@ -128,7 +128,7 @@ const SignIn = () => {
                             Register Account
                         </p>
                         <p>
-                            By creating an account you will be able to connect with us, be up to date , and keep track you have previously made.
+                        "Join a community of learners and achievers. Share your goals, work together, and grow."
                         </p>
                         <Link to="/SignIn" className="text-[#754738] font-bold hover:underline">
                             Register

@@ -14,7 +14,7 @@ const CreateAssignments = () => {
     title: "",
     description: "",
     marks: "",
-    photoURL: "",
+    photoUrl: "",
     difficulty: "",
     dueDate: startDate,
   });
@@ -28,14 +28,14 @@ const CreateAssignments = () => {
       newErrors.description = "Description is required.";
     if (!formData.marks || formData.marks <= 0)
       newErrors.marks = "Marks must be greater than 0.";
-    if (!formData.photoURL || !isValidURL(formData.photoURL))
-      newErrors.photoURL = "A valid Photo URL is required.";
+    if (!formData.photoUrl || !isValidURL(formData.photoUrl))
+      newErrors.photoUrl = "A valid Photo URL is required.";
     if (!formData.difficulty)
       newErrors.difficulty = "Please select a difficulty level.";
     if (!formData.dueDate) newErrors.dueDate = "Due Date is required.";
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // Return true if no errors
+    return Object.keys(newErrors).length === 0; 
   };
 
   const isValidURL = (url) => {
@@ -67,12 +67,12 @@ const CreateAssignments = () => {
         .then((response) => {
           console.log(response.data);
           toast.success("Assignment created successfully!");
-          // Reset form state
+          
           setFormData({
             title: "",
             description: "",
             marks: "",
-            photoURL: "",
+            photoUrl: "",
             difficulty: "",
             dueDate: new Date(),
           });
@@ -89,7 +89,7 @@ const CreateAssignments = () => {
 
   return (
     <div>
-      <div className="w-11/12 mx-auto py-10">
+      <div className="w-11/12 mx-auto py-10 dark:bg-gray-900 text-black dark:text-white">
         <div className="space-x-3 mb-10">
           <Link to={"/"} className="hover:text-red-500">
             Home
@@ -108,7 +108,7 @@ const CreateAssignments = () => {
             <div className="mb-4 flex items-center">
               <label
                 htmlFor="title"
-                className="w-20 text-sm font-medium text-gray-700"
+                className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Assignment Title:
               </label>
@@ -118,7 +118,7 @@ const CreateAssignments = () => {
                 name="title"
                 value={formData.title}
                 onChange={handleInputChange}
-                className={`w-2/3 px-3 py-2 border ${
+                className={`w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 ${
                   errors.title ? "border-red-500" : "border-gray-300"
                 } rounded-md focus:outline-none`}
               />
@@ -129,7 +129,7 @@ const CreateAssignments = () => {
             <div className="mb-4 flex items-center">
               <label
                 htmlFor="description"
-                className="w-20 text-sm font-medium text-gray-700"
+                className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Description:
               </label>
@@ -138,7 +138,7 @@ const CreateAssignments = () => {
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
-                className={`w-2/3 px-3 py-2 border ${
+                className={`w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 ${
                   errors.description ? "border-red-500" : "border-gray-300"
                 } rounded-md focus:outline-none`}
               />
@@ -151,7 +151,7 @@ const CreateAssignments = () => {
             <div className="mb-4 flex items-center">
               <label
                 htmlFor="marks"
-                className="w-20 text-sm font-medium text-gray-700"
+                className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Marks:
               </label>
@@ -161,7 +161,7 @@ const CreateAssignments = () => {
                 name="marks"
                 value={formData.marks}
                 onChange={handleInputChange}
-                className={`w-2/3 px-3 py-2 border ${
+                className={`w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 ${
                   errors.marks ? "border-red-500" : "border-gray-300"
                 } rounded-md focus:outline-none`}
               />
@@ -171,18 +171,18 @@ const CreateAssignments = () => {
             {/* Photo URL */}
             <div className="mb-4 flex items-center">
               <label
-                htmlFor="photoURL"
-                className="w-20 text-sm font-medium text-gray-700"
+                htmlFor="photoUrl"
+                className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Photo URL:
               </label>
               <input
                 type="text"
-                id="photoURL"
-                name="photoURL"
-                value={formData.photoURL}
+                id="photoUrl"
+                name="photoUrl"
+                value={formData.photoUrl}
                 onChange={handleInputChange}
-                className={`w-2/3 px-3 py-2 border ${
+                className={`w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 ${
                   errors.photoURL ? "border-red-500" : "border-gray-300"
                 } rounded-md focus:outline-none`}
               />
@@ -195,7 +195,7 @@ const CreateAssignments = () => {
             <div className="mb-4 flex items-center">
               <label
                 htmlFor="difficulty"
-                className="w-20 text-sm font-medium text-gray-700"
+                className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Difficulty Level:
               </label>
@@ -204,7 +204,7 @@ const CreateAssignments = () => {
                 name="difficulty"
                 value={formData.difficulty}
                 onChange={handleInputChange}
-                className={`w-2/3 px-3 py-2 border ${
+                className={`w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 ${
                   errors.difficulty ? "border-red-500" : "border-gray-300"
                 } rounded-md focus:outline-none`}
               >
@@ -224,7 +224,7 @@ const CreateAssignments = () => {
             <div className="mb-4 flex items-center">
               <label
                 htmlFor="dueDate"
-                className="w-20 text-sm font-medium text-gray-700"
+                className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Due Date:
               </label>
@@ -235,7 +235,7 @@ const CreateAssignments = () => {
                   setStartDate(date);
                   setFormData({ ...formData, dueDate: date });
                 }}
-                className={`w-2/3 px-3 py-2 border ${
+                className={`w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 ${
                   errors.dueDate ? "border-red-500" : "border-gray-300"
                 } rounded-md focus:outline-none`}
                 dateFormat="dd/MM/yyyy"

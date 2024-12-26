@@ -1,7 +1,7 @@
 
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 const PendingAssignments = () => {
@@ -12,12 +12,7 @@ const PendingAssignments = () => {
 
   useEffect(() => {
     axiosSecure.get(`/pendingAssignments?email=${user.email}`)
-    .then(res => setPendingAssignments(res.data))
-
-    //fetch(`http://localhost:5000/pendingAssignments?email=${user.email}`)
-      //.then((res) => res.json())
-     // .then((data) => setPendingAssignments(data))
-    //  .catch((error) => console.error(error));
+      .then(res => setPendingAssignments(res.data))
   }, [user.email]);
 
   const handleMarkAssignment = (assignment) => {
@@ -26,8 +21,15 @@ const PendingAssignments = () => {
 
   return (
     <div className="w-11/12 mx-auto py-10">
+      <div className="space-x-3 mb-10">
+        <Link to={'/'} className='hover:text-red-500'>Home</Link>
+        <span>|</span>
+        <Link to={'/PendingAssignments'} className='text-red-500'>Pending Assignments</Link>
+        
+      </div>
       <h2 className="text-3xl font-bold mb-6">Pending Assignments</h2>
-      <table className="table-auto w-full border-collapse border border-gray-200">
+      <div className="overflow-x-auto">
+      <table className="table-auto w-full border-collapse border text-center border-gray-200">
         <thead>
           <tr>
             <th className="border px-4 py-2">Title</th>
@@ -45,7 +47,7 @@ const PendingAssignments = () => {
               <td className="border px-4 py-2">
                 <button
                   onClick={() => handleMarkAssignment(assignment)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                  className="bg-black text-white px-4 py-2 rounded hover:bg-slate-600"
                 >
                   Give Marks
                 </button>
@@ -54,6 +56,7 @@ const PendingAssignments = () => {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

@@ -91,7 +91,7 @@ const AssignmentsUpdate = () => {
                     <span>|</span>
                     <Link to={'/Assignments'} className='hover:text-red-500'>Assiments</Link>
                     <span>|</span>
-                    <Link to={'/UpdateAssignment'} className='text-red-500'>Update Assignments</Link>
+                    <Link to='#' className='text-red-500'>Update Assignments</Link>
                 </div>
                 <h1 className='font-bold text-4xl py-5'>Update Your Assignment</h1>
                 <p className='text-2xl pb-2'> Assignment Details</p>
@@ -100,7 +100,7 @@ const AssignmentsUpdate = () => {
                     <form
                         onSubmit={handleUpdateAssignment} >
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="title" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="title" className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Assignment Title:
                             </label>
 
@@ -109,13 +109,13 @@ const AssignmentsUpdate = () => {
                                 id="title"
                                 name="title"
                                 defaultValue={assignment.title}
-                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                className="w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
 
                         </div>
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="description" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="description" className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Description:
                             </label>
 
@@ -124,13 +124,13 @@ const AssignmentsUpdate = () => {
                                 id="description"
                                 name="description"
                                 defaultValue={assignment.description}
-                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                className="w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
 
                         </div>
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="marks" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="marks" className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Marks:
                             </label>
 
@@ -139,7 +139,7 @@ const AssignmentsUpdate = () => {
                                 id="marks"
                                 name="marks"
                                 defaultValue={assignment.marks}
-                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                className="w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
 
@@ -148,27 +148,27 @@ const AssignmentsUpdate = () => {
 
 
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="photoUrl" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="photoUrl" className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Photo URL:
                             </label>
                             <input
                                 type="text"
                                 name="photoURL"
                                 id="photoUrl"
-                                defaultValue={assignment.photoURL}
-                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                defaultValue={assignment.photoUrl}
+                                className="w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             />
                         </div>
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="difficulty" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="difficulty" className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Difficulty Level:
                             </label>
                             <select
                                 id="difficulty"
                                 name="difficulty"
                                 defaultValue={assignment.difficulty}
-                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                className="w-2/3 px-3 py-2 border dark:bg-gray-300 dark:text-gray-900 border-gray-300 dark:text-black rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 required
                             >
                                 <option value='' disabled selected>
@@ -180,7 +180,7 @@ const AssignmentsUpdate = () => {
                             </select>
                         </div>
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="dueDate" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="dueDate" className="w-20 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Due Date:
                             </label>
 
@@ -190,7 +190,7 @@ const AssignmentsUpdate = () => {
                                 id="dueDate"
                                 name="dueDate"
                                 defaultValue={assignment.dueDate}
-                                className="w-2/3 items-center border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                className="w-2/3 items-center border dark:bg-gray-300 dark:text-gray-900 border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
                                 dateFormat="dd/MM/yyyy"

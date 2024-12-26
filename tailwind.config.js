@@ -4,8 +4,17 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'bannar1': "url('./assets/1.jpg')",
+        'bannar2': "url('./src/assets/2.jpg')",
+        'bannar3': "url('./src/assets/3.jpg')",
+
+        
+      }
+    },
   },
   plugins: [
     require('daisyui'),

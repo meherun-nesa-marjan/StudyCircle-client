@@ -87,25 +87,25 @@ const AssignmentDetails = () => {
         </div>
 
         {/* Assignment Details Card */}
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-base-100 shadow-xl dark:bg-gray-700 dark:text-white">
           <figure>
             <img className="p-6" src={assignment.photoUrl} alt={assignment.title} />
           </figure>
           <div className="card-body">
             <h2 className="text-3xl font-bold mb-4">Title: {assignment.title}</h2>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
               <strong>Description: </strong>
               {assignment.description}
             </p>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
               <strong>Difficulty: </strong>
               {assignment.difficulty}
             </p>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
               <strong>Marks: </strong>
               {assignment.marks}
             </p>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
               <strong>Due Date: </strong>
               {new Date(assignment.dueDate).toDateString()}
             </p>
