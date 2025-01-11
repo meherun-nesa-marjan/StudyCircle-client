@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 const axiosInstance = axios.create({
-    baseURL:'http://localhost:5000',
+    baseURL:'https://my-new-assignment-11.vercel.app',
     withCredentials: true,
 
 

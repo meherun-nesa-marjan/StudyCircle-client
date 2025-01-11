@@ -79,44 +79,44 @@ const SignUp = () => {
                 <div className="lg:w-9/12 w-full mx-auto py-6">
                     <form onSubmit={handleRegistration}>
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="name" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="name" className="dark:text-white w-20 text-sm font-medium text-gray-700">
                                 Your Name:
                             </label>
                             <input
                                 type="text"
                                 id="name"
                                 name="name"
-                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                className="dark:text-white w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-green-600 focus:shadow-md focus:border-green-500"
                                 required
                             />
                         </div>
 
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="photoURL" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="photoURL" className="dark:text-white w-20 text-sm font-medium text-gray-700">
                                 Photo URL:
                             </label>
                             <input
                                 type="URL"
                                 name="photoURL"
                                 id="photoUrl"
-                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                className="dark:text-white w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-green-600 focus:shadow-md focus:border-green-500"
                                 required
                             />
                         </div>
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="email" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="email" className="dark:text-white w-20 text-sm font-medium text-gray-700">
                                 Email:
                             </label>
                             <input
                                 type="email"
                                 id="email"
                                 name="email"
-                                className="w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-sky-600 focus:shadow-md focus:border-blue-500"
+                                className="dark:text-white w-2/3 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:shadow-green-600 focus:shadow-md focus:border-green-500"
                                 required
                             />
                         </div>
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="password" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="password" className="dark:text-white w-20 text-sm font-medium text-gray-700">
                                 Password:
                             </label>
                             <div className="relative w-2/3">
@@ -124,7 +124,7 @@ const SignUp = () => {
                                     type={passwordVisible ? "text" : "password"}
                                     id="password"
                                     name="password"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    className=" w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                                     required
                                 />
                                 <button
@@ -140,21 +140,21 @@ const SignUp = () => {
                         <div className="flex gap-3">
                             <button
                                 type="submit"
-                                className="bg-black text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex gap-2 items-center"
+                                className="bg-[#137257] text-white py-2 px-6 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 flex gap-2 items-center"
                             >
                                 <FaUserAlt />  Create
                             </button>
                             <button
                                 onClick={handleRegistrationWithGoogle}
                                 type="button"
-                                className="flex items-center justify-center"
+                                className=" items-center border-2 px-4 py-2 rounded-md border-[#137257] justify-center"
                             >
-                                <p>Or register with: <FcGoogle size={24} /></p>
+                                <p className="">Or register with: <FcGoogle size={24} /></p>
                             </button>
                         </div>
                         <p className="mt-4 text-center">
                             Already have an account?{" "}
-                            <Link to="/SignIn" className="text-[#754738] font-bold hover:underline">
+                            <Link to="/SignIn" className="text-[#137257] font-bold hover:underline">
                                 Sign In
                             </Link>
                         </p>

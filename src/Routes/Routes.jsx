@@ -11,6 +11,8 @@ import PendingAssignments from "../Pages/PendingAssignments";
 import AssignmentsUpdate from "../Pages/AssignmentsUpdate";
 import AssignmentDetails from "../Pages/AssignmentDetails";
 import EvaluateAssignment from "../Pages/EvaluateAssignment";
+import Error from "../Pages/Error";
+import AboutUs from "../Pages/AboutUs";
 
 
 
@@ -18,11 +20,16 @@ const Routes = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout />,
-        //errorElement:<Error />,
+        errorElement:<Error />,
         children: [
             {
                 path: '/',
                 element: <Home />,
+
+            },
+            {
+                path: '/AboutUs',
+                element: <AboutUs />,
 
             },
             {

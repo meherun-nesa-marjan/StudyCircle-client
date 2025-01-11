@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaUserAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../Providers/AuthProvider";
-import axios from "axios";
-import { TbRuler2 } from "react-icons/tb";
+
 
 
 const SignIn = () => {
@@ -66,9 +65,9 @@ const SignIn = () => {
                 <div className=" w-full mx-auto py-6 grid lg:grid-cols-2 grid-cols-1 gap-5 ">
 
                     <form onSubmit={handleLogin} className="border border-slate-600 p-10">
-                        <h1 className='font-bold text-4xl py-5'>Sign In Here</h1>
+                        <h1 className='font-bold text-4xl dark:text-white py-5'>Sign In Here</h1>
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="email" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="email" className="dark:text-white w-20 text-sm font-medium text-gray-700">
                                 Email:
                             </label>
                             <input
@@ -80,7 +79,7 @@ const SignIn = () => {
                             />
                         </div>
                         <div className="mb-4 flex items-center">
-                            <label htmlFor="password" className="w-20 text-sm font-medium text-gray-700">
+                            <label htmlFor="password" className="dark:text-white w-20 text-sm font-medium text-gray-700">
                                 Password:
                             </label>
 
@@ -107,14 +106,14 @@ const SignIn = () => {
                         <div className="flex gap-3">
                             <button
                                 type="submit"
-                                className="bg-black text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex gap-2 items-center"
+                                className="bg-[#137257] text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 flex gap-2 items-center"
                             >
-                                Sign In
+                              <FaUserAlt />  Sign In
                             </button>
                             <button
                                 onClick={handleLoginWithGoogle}
                                 type="button"
-                                className=""
+                                className="items-center border-2 px-4 py-2 rounded-md border-[#137257] justify-center"
                             >
                                 <p>Or login with: <FcGoogle size={24} /></p>
                             </button>
@@ -130,7 +129,7 @@ const SignIn = () => {
                         <p>
                         "Join a community of learners and achievers. Share your goals, work together, and grow."
                         </p>
-                        <Link to="/SignIn" className="text-[#754738] font-bold hover:underline">
+                        <Link to="/SignUp" className="text-[#137257] font-bold hover:underline">
                             Register
                         </Link>
                     </div>

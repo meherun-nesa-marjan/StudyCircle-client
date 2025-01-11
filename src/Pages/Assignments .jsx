@@ -16,7 +16,7 @@ const Assignments = () => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/assignments?difficulty=${filter}`)
+        axios.get(`https://my-new-assignment-11.vercel.app/assignments?difficulty=${filter}`)
             .then(response => {
                 setAssignments(response.data);
             })
@@ -79,7 +79,7 @@ const Assignments = () => {
     };
 
     return (
-        <div className="w-11/12 mx-auto py-10">
+        <div className="w-11/12 mx-auto py-8">
             <div className="space-x-3 mb-10">
                 <Link to="/" className="hover:text-red-500">Home</Link>
                 <span>|</span>
