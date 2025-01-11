@@ -250,7 +250,7 @@ const CreateAssignments = () => {
             <div className="flex gap-3">
               <button
                 type="submit"
-                className="bg-black text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none"
+                className="bg-[#137257] text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none"
               >
                 Create
               </button>

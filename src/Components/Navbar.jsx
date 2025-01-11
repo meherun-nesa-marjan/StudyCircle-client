@@ -33,7 +33,7 @@ const Navbar = () => {
     ];
 
     return (
-        <div className={`navbar sticky top-0 z-50 transition-shadow duration-300 ${isScrolled ? 'backdrop-blur-md bg-opacity-60 bg-[#B1E3D5] shadow-md' : ''}`}>
+        <div className={`navbar sticky top-0 z-50 bg-[#B1E3D5] dark:bg-gray-900 transition-shadow duration-300 ${isScrolled ? 'backdrop-blur-md bg-opacity-60 bg-[#B1E3D5] shadow-md' : ''}`}>
             <div className="navbar lg:w-11/12 mx-auto py-4 dark:bg-gray-900 text-black dark:text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -50,13 +50,13 @@ const Navbar = () => {
                             ))}
                         </ul>
                     </div>
-                    <Link to="/" className="lg:text-2xl font-bold">StudyCircle</Link>
+                    <Link to="/" className="lg:text-2xl font-bold text-green-950">StudyCircle</Link>
                 </div>
 
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         {navItems.map(({ path, element }) => (
-                            <NavLink key={path} to={path} className={({ isActive }) => `text-black mx-4 text-xl ${isActive ? "font-bold" : ""} dark:text-white`}>
+                            <NavLink key={path} to={path} className={({ isActive }) => `text-green-950 mx-4 text-xl ${isActive ? "font-bold" : ""} dark:text-white`}>
                                 {element}
                             </NavLink>
                         ))}

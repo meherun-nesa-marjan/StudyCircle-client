@@ -6,7 +6,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
-        <div className=" bg-gray-400 dark:bg-gray-900  dark:text-white">
+        <div className=" bg-[#B1E3D5] dark:bg-gray-900  dark:text-white">
             <footer className="footer w-11/12 mx-auto py-10 text-base-content dark:bg-gray-900  dark:text-white ">
                 <aside>
                     <p>

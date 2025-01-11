@@ -1,43 +1,47 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const About = () => {
     return (
-        <div>
-            <section id="about" className="py-16 bg-gray-50 dark:bg-gray-800">
-    <div className="container mx-auto text-center px-4">
-        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">About Us</h2>
-        <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-            At StudyCircle, we are passionate about helping students achieve their full potential. Our platform is designed to help you stay on top of your assignments, manage deadlines, and collaborate with your peers in an engaging, easy-to-use environment. Whether you’re in high school, college, or university, StudyCircle is here to support your learning journey.
-        </p>
-        <div className="flex justify-center items-center gap-10">
-            <div className="w-1/3">
-                <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">Our Mission</h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                    Our mission is to provide students with the tools they need to manage their studies and academic life effectively. We aim to simplify learning by offering a platform where students can organize assignments, track progress, and connect with others.
-                </p>
-            </div>
-            <div className="w-1/3">
-                <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">Our Vision</h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                    Our vision is to be the go-to platform for students worldwide, enabling them to learn more efficiently and stay ahead of deadlines. We envision a world where students are empowered to reach their academic goals with ease and confidence.
-                </p>
-            </div>
-            <div className="w-1/3">
-                <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">Our Values</h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                    At StudyCircle, we believe in innovation, collaboration, and perseverance. Our platform is built on the values of trust, transparency, and dedication to student success. We are committed to creating an inclusive and supportive learning environment.
-                </p>
-            </div>
-        </div>
-        <div className="mt-12">
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-                Join us on this journey and become part of a growing community of students who are redefining the way we learn and collaborate.
-            </p>
-        </div>
-    </div>
-</section>
+        <section className="py-16 dark:bg-gray-900 w-11/12 mx-auto">
+            <div className="">
 
-        </div>
+            </div>
+            <div className="grid lg:grid-cols-2 grid-cols-1 gap-10">
+                <div className="">
+                    <img src="https://i.ibb.co.com/zXDmqG9/leaves-1076307-1280.jpg" alt="" />
+                </div>
+                <div className=" px-4">
+                    {/* Heading */}
+                    <div className="">
+                        <h2 className="text-4xl font-bold text-[#137257] dark:text-white mb-6">
+                            About Us
+                        </h2>
+                    </div>
+
+                    {/* Description Text */}
+
+                    <p className='py-5'>
+                        At StudyCircle, we are dedicated to empowering students in their academic journey. Our mission is to create a seamless and organized platform where students can manage assignments, collaborate effectively, and stay on top of their educational goals. By combining innovative tools and a supportive community, we help students excel academically while fostering a balanced and stress-free approach to learning.
+                        We envision a world where every student has the tools they need to succeed. With the growing demands of academics, students often struggle to stay organized and motivated. Our vision is to bridge that gap by providing a platform that not only helps students manage their assignments, but also allows them to collaborate, learn from each other, and thrive as part of a motivated community.
+
+                        We want to create an environment where students can feel empowered, supported, and focused on their studies, enabling them to take charge of their learning journey.
+
+
+                    </p>
+
+                    {/* See More Button */}
+                    <Link to="/AboutUs">
+                        <button className="px-8 py-3 bg-[#137257] text-white text-lg font-semibold rounded-full shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200">
+                            See More
+                        </button>
+                    </Link>
+                </div>
+            </div>
+
+        </section>
+
+
     );
 };
 

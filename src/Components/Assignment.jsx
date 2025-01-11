@@ -22,8 +22,8 @@ const Assignment = () => {
     };
 
     return (
-      <div className="">
-          <div className="my-8 w-11/12 mx-auto ">
+      <div className="bg-[#B1E3D5] dark:bg-gray-900">
+          <div className="py-10 w-11/12 mx-auto ">
            <div className="text-center mb-5">
            <h2 className="text-2xl font-bold">Assignments</h2>
            <p className='text-2xl '>we believe that learning is more than just reading textbooks.</p>

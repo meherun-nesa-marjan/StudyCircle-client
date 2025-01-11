@@ -1,86 +1,117 @@
 import { motion } from "framer-motion";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import { Link } from "react-router-dom";
 
 const AboutUs = () => {
     return (
-        <section className="py-16 bg-gray-50 dark:bg-gray-800">
-            <div className="container mx-auto px-4 text-center">
+        <section className="py-16 relative bg-bannar bg-cover bg-no-repeat bg-center text-white">
+            {/* Overlay */}
+            <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+
+            <div className="container w-11/12 mx-auto px-4 text-center relative z-10">
+                {/* Title */}
                 <motion.h2
-                    className="text-4xl font-bold text-gray-800 dark:text-white mb-6"
+                    className="text-5xl font-extrabold text-white mb-6"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1 }}
                 >
                     About Us
                 </motion.h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300 mb-10">
-                    At StudyCircle, we're dedicated to helping students excel academically by providing a platform that streamlines assignment management and fosters collaboration. Join us and experience a new way of learning!
-                </p>
-
-                {/* Swiper for rotating images or content */}
-                <Swiper
-                    spaceBetween={30}
-                    slidesPerView={1}
-                    loop={true}
-                    autoplay={{ delay: 3000 }}
-                    className="mb-10"
-                >
-                    <SwiperSlide>
-                        <motion.div
-                            className="bg-white p-8 shadow-xl rounded-lg"
-                            initial={{ x: -100, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ duration: 1 }}
-                        >
-                            <img src="https://via.placeholder.com/600x400" alt="Our Mission" className="w-full h-64 object-cover rounded-md mb-6" />
-                            <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">Our Mission</h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                Our mission is to empower students by providing a simple, intuitive platform where they can manage their academic tasks, track progress, and collaborate with peers to achieve success.
-                            </p>
-                        </motion.div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <motion.div
-                            className="bg-white p-8 shadow-xl rounded-lg"
-                            initial={{ x: 100, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ duration: 1 }}
-                        >
-                            <img src="https://via.placeholder.com/600x400" alt="Our Vision" className="w-full h-64 object-cover rounded-md mb-6" />
-                            <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">Our Vision</h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                We envision a world where students are empowered with the tools to achieve their academic goals efficiently, regardless of their location or background. Together, we can shape the future of learning.
-                            </p>
-                        </motion.div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <motion.div
-                            className="bg-white p-8 shadow-xl rounded-lg"
-                            initial={{ y: 100, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 1 }}
-                        >
-                            <img src="https://via.placeholder.com/600x400" alt="Our Values" className="w-full h-64 object-cover rounded-md mb-6" />
-                            <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">Our Values</h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                At StudyCircle, we believe in transparency, collaboration, and continuous improvement. These values guide us as we work to create a platform that supports students in their pursuit of knowledge.
-                            </p>
-                        </motion.div>
-                    </SwiperSlide>
-                </Swiper>
-
-                {/* Additional Text Section */}
+                
+                {/* Description */}
                 <motion.p
-                    className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+                    className="text-lg md:text-xl text-white mb-10 leading-relaxed max-w-2xl mx-auto"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1.5 }}
                 >
-                    Join us on this journey to redefine the way students approach learning, stay organized, and achieve success. With StudyCircle, you’re never alone in your academic challenges. Let’s work together to accomplish your goals!
+                    We are StudyCircle, a passionate team dedicated to revolutionizing how students manage their academic life. 
+                    Join us to experience seamless assignment tracking, powerful collaboration tools, and a community of motivated learners.
                 </motion.p>
+
+                {/* Mission, Vision, and Values Cards */}
+                <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
+                    {/* Mission Card */}
+                    <motion.div
+                        className="bg-white p-8 shadow-xl rounded-lg transform hover:scale-105 transition duration-300"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1 }}
+                    >
+                        <img 
+                            src="https://i.ibb.co.com/JyzbY7T/book-6871220-1280.jpg" 
+                            alt="Mission" 
+                            className="w-full h-64 object-cover rounded-lg mb-6"
+                        />
+                        <h3 className="text-3xl font-semibold text-gray-900 dark:text-white mb-3">Our Mission</h3>
+                        <p className="text-lg text-gray-700 dark:text-gray-300">
+                            Our mission is to help students achieve academic success through efficient assignment tracking, powerful collaboration tools, and seamless interaction. We empower students to manage their educational journey effectively.
+                        </p>
+                    </motion.div>
+
+                    {/* Vision Card */}
+                    <motion.div
+                        className="bg-white p-8 shadow-xl rounded-lg transform hover:scale-105 transition duration-300"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1 }}
+                    >
+                        <img 
+                            src="https://i.ibb.co.com/ChXL8jv/laptop.jpg" 
+                            alt="Vision" 
+                            className="w-full h-64 object-cover rounded-lg mb-6"
+                        />
+                        <h3 className="text-3xl font-semibold text-gray-900 dark:text-white mb-3">Our Vision</h3>
+                        <p className="text-lg text-gray-700 dark:text-gray-300">
+                            We envision a future where students are empowered to navigate their academic challenges effortlessly. Our platform seeks to create a dynamic community where students collaborate, learn, and succeed together.
+                        </p>
+                    </motion.div>
+
+                    {/* Values Card */}
+                    <motion.div
+                        className="bg-white p-8 shadow-xl rounded-lg transform hover:scale-105 transition duration-300"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1 }}
+                    >
+                        <img 
+                            src="https://i.ibb.co.com/hR1R97S/time.jpg" 
+                            alt="Values" 
+                            className="w-full h-64 object-cover rounded-lg mb-6"
+                        />
+                        <h3 className="text-3xl font-semibold text-gray-900 dark:text-white mb-3">Our Values</h3>
+                        <p className="text-lg text-gray-700 dark:text-gray-300">
+                            At StudyCircle, we believe in **transparency**, **collaboration**, and **continuous improvement**. We value the growth of each individual, fostering an inclusive environment where everyone can succeed.
+                        </p>
+                    </motion.div>
+                </div>
+
+                {/* Additional text and Call to Action */}
+                <motion.div
+                    className="text-center mt-12"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 2 }}
+                >
+                    <h4 className="text-3xl font-semibold text-white mb-6">
+                        Ready to Join the Revolution in Learning?
+                    </h4>
+                    <p className="text-lg text-gray-200 mb-8 max-w-3xl mx-auto">
+                        Our platform is here to assist you in every step of your academic journey. Whether it’s managing assignments or collaborating with peers, StudyCircle has got you covered.
+                    </p>
+
+                    {/* Link wrapped around the motion button */}
+                    <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <Link to="/SignIn">
+                            <button className="px-8 py-3 bg-[#137257] text-white text-lg font-semibold rounded-full shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200">
+                                Join Us Now
+                            </button>
+                        </Link>
+                    </motion.div>
+                </motion.div>
             </div>
         </section>
     );

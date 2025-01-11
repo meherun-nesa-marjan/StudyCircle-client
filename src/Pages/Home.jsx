@@ -4,16 +4,19 @@ import FaqSection from '../Components/FaqSection';
 import Bannar from '../Components/Bannar';
 import Assignment from '../Components/Assignment';
 import About from '../Components/About';
+import Blog from '../Components/Blog';
 
 
 
 const Home = () => {
     return (
         <div>
+           
             <Bannar />
             <About />
             <Assignment />
             <FeatureSection />
+            <Blog />
             <FaqSection />
 
 

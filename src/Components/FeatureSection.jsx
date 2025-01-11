@@ -3,7 +3,7 @@ import React from 'react';
 const FeatureSection = () => {
     return (
         <div>
-            <div class="py-16 bg-gray-50 dark:bg-gray-900  dark:text-white">
+            <div class="py-16 bg-[#B1E3D5] dark:bg-gray-900  dark:text-white">
                 <div class="max-w-7xl mx-auto text-center">
                     <h2 class="text-3xl lg:text-4xl font-bold mb-8">Why Choose Study Circle?</h2>
                     <h2 className='text-xl lg:text-2xl font-bold'>Our Feature</h2>
