@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaHandshake } from 'react-icons/fa';
+import { GrUserManager } from 'react-icons/gr';
 
 const FeatureSection = () => {
     return (
@@ -11,26 +13,32 @@ const FeatureSection = () => {
                    
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="p-6 bg-white dark:bg-gray-700  dark:text-white shadow-md rounded-lg">
+                            <p className='place-items-center mb-2'><FaHandshake className='font-bold text-4xl' /></p>
                             <h3 class="text-xl font-semibold mb-4">Secure Authentication</h3>
                             <p>Log in with confidence using JWT-based authentication and Google Sign-In.</p>
                         </div>
                         <div class="p-6 bg-white dark:bg-gray-700  dark:text-white shadow-md rounded-lg">
+                        <p className='place-items-center mb-2'><GrUserManager className='font-bold text-4xl' /></p>
                             <h3 class="text-xl font-semibold mb-4">Effortless Assignment Management</h3>
                             <p>Filter by difficulty, search assignments, and track submission status in real time.</p>
                         </div>
                         <div class="p-6 bg-white dark:bg-gray-700  dark:text-white shadow-md rounded-lg">
+                        <p className='place-items-center mb-2'><GrUserManager className='font-bold text-4xl' /></p>
                             <h3 class="text-xl font-semibold mb-4"> Assignment Submission Status</h3>
                             <p>Allow students to view their submission status</p>
                         </div>
                         <div class="p-6 bg-white dark:bg-gray-700  dark:text-white shadow-md rounded-lg">
+                        <p className='place-items-center mb-2'><GrUserManager className='font-bold text-4xl' /></p>
                             <h3 class="text-xl font-semibold mb-4">Dark Mode Support</h3>
                             <p>Add a toggle for light/dark mode to enhance user experience.</p>
                         </div>
                         <div class="p-6 bg-white dark:bg-gray-700  dark:text-white shadow-md rounded-lg">
+                        <p className='place-items-center mb-2'><GrUserManager className='font-bold text-4xl' /></p>
                             <h3 class="text-xl font-semibold mb-4">Dark Mode Support</h3>
                             <p>Add a toggle for light/dark mode to enhance user experience.</p>
                         </div>
                         <div class="p-6 bg-white dark:bg-gray-700  dark:text-white shadow-md rounded-lg">
+                        <p className='place-items-center mb-2'><GrUserManager className='font-bold text-4xl' /></p>
                             <h3 class="text-xl font-semibold mb-4">Feedback Analytics</h3>
                             <p> Generate insights from teacher feedback, highlighting areas for improvement.</p>
                         </div>
