@@ -1,9 +1,6 @@
 
     ![Alt text](https://i.ibb.co/bMjxG20H/Screenshot-2025-02-05-121115.png)
-   
 
-
-<br>
 StudyCircle is an all-in-one platform designed to help students manage their learning journey. From organizing assignments to collaborating with peers, StudyCircle provides tools to boost productivity and streamline academic tasks.
 
 **Live Site URL:** [Visit StudyCircle](https://my-new-assignment-11.firebaseapp.com/)  
