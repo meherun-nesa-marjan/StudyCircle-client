@@ -39,7 +39,7 @@ const AboutUs = () => {
                         transition={{ duration: 1 }}
                     >
                         <img 
-                            src="https://i.ibb.co.com/JyzbY7T/book-6871220-1280.jpg" 
+                            src="./src/assets/mission.jpg" 
                             alt="Mission" 
                             className="w-full h-64 object-cover rounded-lg mb-6"
                         />
@@ -57,7 +57,7 @@ const AboutUs = () => {
                         transition={{ duration: 1 }}
                     >
                         <img 
-                            src="https://i.ibb.co.com/ChXL8jv/laptop.jpg" 
+                            src="./src/assets/laptop.jpg" 
                             alt="Vision" 
                             className="w-full h-64 object-cover rounded-lg mb-6"
                         />
@@ -75,7 +75,7 @@ const AboutUs = () => {
                         transition={{ duration: 1 }}
                     >
                         <img 
-                            src="https://i.ibb.co.com/hR1R97S/time.jpg" 
+                            src="./src/assets/time.jpg" 
                             alt="Values" 
                             className="w-full h-64 object-cover rounded-lg mb-6"
                         />

@@ -9,7 +9,7 @@ const About = () => {
             </div>
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-10">
                 <div className="">
-                    <img src="https://i.ibb.co.com/zXDmqG9/leaves-1076307-1280.jpg" alt="" />
+                    <img src="./src/assets/1.jpg" alt="" />
                 </div>
                 <div className=" px-4">
                     {/* Heading */}

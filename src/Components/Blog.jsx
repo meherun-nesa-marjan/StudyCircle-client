@@ -2,9 +2,9 @@ import React from 'react';
 
 const Blog = () => {
     const blogs = [
-        { id: 1, title: "How to Manage Your Assignments Effectively", excerpt: "Learn the best strategies to stay on top of your assignments and never miss a deadline.", image: "https://i.ibb.co.com/RzbVm1L/man-791049-1280-1.jpg" },
-        { id: 2, title: "The Power of Collaboration in Education", excerpt: "Collaborating with peers can boost your learning and enhance your academic experience. Here's why.", image: "https://i.ibb.co.com/Qm4tBYc/reading-925589-1280.jpg" },
-        { id: 3, title: "Time Management Tips for Students", excerpt: "Time is the most valuable resource. Discover techniques to manage it better and excel in your studies.", image: "https://i.ibb.co.com/bJS4W8k/book-1283865-1280.jpg" }
+        { id: 1, title: "How to Manage Your Assignments Effectively", excerpt: "Learn the best strategies to stay on top of your assignments and never miss a deadline.", image: "https://i.ibb.co.com/qMs97Gq3/book.jpg" },
+        { id: 2, title: "The Power of Collaboration in Education", excerpt: "Collaborating with peers can boost your learning and enhance your academic experience. Here's why.", image: "https://i.ibb.co.com/qMs97Gq3/book.jpg" },
+        { id: 3, title: "Time Management Tips for Students", excerpt: "Time is the most valuable resource. Discover techniques to manage it better and excel in your studies.", image: "https://i.ibb.co.com/qMs97Gq3/book.jpg" }
     ];
 
     return (
