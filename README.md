@@ -1,3 +1,4 @@
+    ![StudyCircle Screenshot](https://i.ibb.co.com/jZz1KCXJ/Screenshot-2025-02-05-121115.png)
 
     ![Alt text](https://i.ibb.co.com/jZz1KCXJ/Screenshot-2025-02-05-121115.png)
 
