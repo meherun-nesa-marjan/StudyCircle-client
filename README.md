@@ -53,7 +53,7 @@ https://github.com/meherun-nesa-marjan/StudyCircle-client.git
 2️⃣ Navigate to the project directory:
 
 ```sh
-cd fundnest
+cd StudyCircle
 ```
 3️⃣ Install dependencies:
 
