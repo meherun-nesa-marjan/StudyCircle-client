@@ -1,5 +1,7 @@
+
 <div align="center">
-    <img src="https://i.ibb.co/bMjxG20H/Screenshot-2025-02-05-121115.png" alt="StudyCircle">
+    ![Alt text](https://i.ibb.co/bMjxG20H/Screenshot-2025-02-05-121115.png)
+   
 </div>
 
 <br>
