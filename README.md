@@ -1,7 +1,5 @@
-    ![StudyCircle Screenshot](https://i.ibb.co.com/jZz1KCXJ/Screenshot-2025-02-05-121115.png)
 
-    ![Alt text](https://i.ibb.co.com/jZz1KCXJ/Screenshot-2025-02-05-121115.png)
-    <div align="center">
+<div align="center">
   <img src="https://i.ibb.co.com/jZz1KCXJ/Screenshot-2025-02-05-121115.png" alt="Screenshot-2025-02-05-121115" border="0">
 </div>
 
