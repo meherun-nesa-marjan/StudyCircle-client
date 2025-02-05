@@ -1,7 +1,7 @@
 <div align="center">
-    <img src="https://i.ibb.co.com/bMjxG20H/Screenshot-2025-02-05-121115.png" alt="StudyCircle">
-  
+    <img src="https://i.ibb.co/bMjxG20H/Screenshot-2025-02-05-121115.png" alt="StudyCircle">
 </div>
+
 <br>
 StudyCircle is an all-in-one platform designed to help students manage their learning journey. From organizing assignments to collaborating with peers, StudyCircle provides tools to boost productivity and streamline academic tasks.
 
