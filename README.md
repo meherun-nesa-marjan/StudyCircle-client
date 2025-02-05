@@ -30,7 +30,47 @@ StudyCircle is an all-in-one platform designed to help students manage their lea
 4. **Filter Assignments**  use the filter option on the Assignments page to select Easy, Medium, or Hard assignments.
 
 ---
+## 🛠️ Technologies Used
+   - **Frontend:** React, Tailwind CSS, DaisyUI
+   - **Backend & Database:** Firebase, MongoDb, NodeJs, Express
+   - **Authentication:** Firebase Authentication, JWT Token
+   - **State Management & Routing:** React Router
 
 ## Get Started  
+- Follow these steps to set up the project locally
+ <br>
+1️⃣ Clone the repository:
+
+```sh
+https://github.com/meherun-nesa-marjan/StudyCircle-client.git
+```
+2️⃣ Navigate to the project directory:
+
+```sh
+cd fundnest
+```
+3️⃣ Install dependencies:
+
+```sh
+npm install
+```
+4️⃣ Create a .env file and add your Firebase configuration.<br>
+5️⃣ Start the development server:
+```sh
+npm run dev
+```
+
+## 📦 Dependencies
+```json
+"dependencies": {
+  "react": "^18.2.0",
+  "react-router-dom": "^6.14.1",
+  "firebase": "^9.6.1",
+  "tailwindcss": "^3.0.0",
+  "daisyui": "^2.51.0",
+  "axios": "^1.3.0"
+}
+
+```
 
 Visit our live site and join the journey to turn ideas into reality: [StudyCircle](https://my-new-assignment-11.firebaseapp.com/)  
