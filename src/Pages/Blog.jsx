@@ -22,19 +22,17 @@ const Blog = () => {
                             <img className="w-full h-64 object-cover rounded-lg mb-6" src={blog.image} alt={blog.title} />
                             <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">{blog.title}</h3>
                             <p className="text-gray-700 dark:text-gray-300 mb-4">{blog.excerpt}</p>
-
-                            <button className="px-6 py-2 bg-[#B1E3D5] text-[#137257] border-2 border-[#137257] text-lg font-semibold rounded-md hover:bg-green-700 transition duration-300 hover:text-white ">
-                                Read More
-                            </button>
-
+                            
+                                <button className="px-6 py-2 bg-[#137257] text-white text-lg font-semibold rounded-md hover:bg-green-700 transition duration-300">
+                                    Read More
+                                </button>
+                          
                         </div>
                     ))}
                 </div>
 
                 {/* See More Button */}
-                <button className="px-6 py-2 mt-10 bg-[#137257] text-white text-lg font-semibold rounded-md hover:bg-green-700 transition duration-300">
-                Read More Blogs
-                </button>
+             
             </div>
         </section>
     );

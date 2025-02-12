@@ -28,6 +28,7 @@ const Navbar = () => {
     const navItems = [
         { path: '/', element: 'Home' },
         { path: '/AboutUs', element: 'About' },
+        { path: '/Contact', element: 'Contact' },
         { path: '/Assignments', element: 'Assignments' },
         ...(user ? [{ path: '/PendingAssignments', element: 'Pending Assignments' }] : []),
     ];
