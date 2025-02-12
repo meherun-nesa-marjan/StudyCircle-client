@@ -14,6 +14,8 @@ import EvaluateAssignment from "../Pages/EvaluateAssignment";
 import Error from "../Pages/Error";
 import AboutUs from "../Pages/AboutUs";
 import Contact from "../Pages/Contact";
+import Blog from "../Pages/Blog";
+import BlogDetails from "../Pages/BlogDetails";
 
 
 
@@ -31,6 +33,16 @@ const Routes = createBrowserRouter([
             {
                 path: '/AboutUs',
                 element: <AboutUs />,
+
+            },
+            {
+                path: '/Blogs',
+                element: <Blog />,
+
+            },
+            {
+                path: '/BlogDetails/:id',
+                element: <BlogDetails />,
 
             },
             {
